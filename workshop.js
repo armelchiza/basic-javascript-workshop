@@ -1,6 +1,14 @@
 function firstLetter(inputString) {
-
+    if (inputString === undefined) {
+        return undefined;
+    }
+    else {
+        return inputString[0];
+    }
 }
+
+// var answer = firstLetter("Decode");
+// console.log(answer);
 
 function lastLetter(inputString) {
 
