@@ -7,8 +7,8 @@ function firstLetter(inputString) {
     }
 }
 
-// var answer = firstLetter("Decode");
-// console.log(answer);
+var answer = firstLetter("Decode");
+console.log(answer);
 
 function lastLetter(inputString) {
 
