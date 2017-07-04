@@ -188,25 +188,26 @@ function isPalindrome(inputString) {
 }
 
 function wrapCharacter(inputString) { // FIGURING THIS ON OUT
-    numStrings = Math.ceil(inputString.length/40);
-    newString = "";
-    for (i=0; i<numStrings-1; i++){
-        if (i < numStrings -1){
-            var adding = "";
-            adding += inputString.slice(i*40, (i+1)*40) + "\n";
-            if (adding[0] == " "){
-                adding = adding.slice(1,adding.length-1);
-            }
-            newString += adding;
+    var theArray = inputString.match(/.{1,40}/g);
+    var futureString = "";
+    for (i=0; i<theArray.length; i++) {
+        if (theArray[i][0] == " ") {
+            erasedSpace = theArray[i].slice(1,theArray[i].length);
+            theArray[i] = erasedSpace;
         }
-        else{
-            var adding = "";
-            adding = inputString.slice(i*40, inputString.length-1);
-            newString += adding;
+    } // now that I've removed the empty spaces, time to fill up a string
+    for (i=0; i<theArray.length; i++) {
+        if (i == theArray.length-1){
+            futureString += theArray[i];
+            print('  last  ');
+        }
+        else {
+            futureString += theArray[i] + "\n";
         }
     }
-    return (newString);
+    return (futureString);
 }
+
 var answer = isPalindrome("cooc");
 console.log(answer);
 
