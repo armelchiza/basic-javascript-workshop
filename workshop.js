@@ -187,38 +187,49 @@ function isPalindrome(inputString) {
     }
 }
 
-function wrapCharacter(inputString) { // FIGURING THIS ON OUT
-    var theArray = inputString.match(/.{1,40}/g);
-    var futureString = "";
-    for (i=0; i<theArray.length; i++) {
-        if (theArray[i][0] == " ") {
-            erasedSpace = theArray[i].slice(1,theArray[i].length);
-            theArray[i] = erasedSpace;
-        }
-    } // now that I've removed the empty spaces, time to fill up a string
-    for (i=0; i<theArray.length; i++) {
-        if (i == theArray.length-1){
-            futureString += theArray[i];
-            print('  last  ');
-        }
-        else {
-            futureString += theArray[i] + "\n";
-        }
+function wrapCharacter(inputString) { 
+
+    var toString = "";
+    var slices = Math.floor(inputString.length / 40);
+    var upperSlice = slices*40;
+    var correction = 0;
+
+    for (i=0; i<slices; i++){
+      var forString = inputString.slice(i*40 + correction, (i+1)*40 + correction);
+      // to String
+      if (forString[0] == " ") {
+        correction++;
+        forString = forString.slice(1, forString.length) + inputString[(i+1)*40];
+      }
+      toString += forString + "\n";
     }
-    return (futureString);
+    toString += inputString.slice(upperSlice + correction, inputString.length);
+    return toString;
 }
 
 var answer = isPalindrome("cooc");
 console.log(answer);
 
 
-function wrapWord(inputString) {
-    // Make this function return the input string wrapped to 40 characters max 
-    // per line, but break the line by word. If a word is longer than 40 
-    // characters, put it on its own line no matter how long it is, and move on 
+function wrapWord(inputString) { // FIGURING THIS ON OUT
+    // Make this function return the input string wrapped to 40 characters max
+    // per line, but break the line by word. If a word is longer than 40
+    // characters, put it on its own line no matter how long it is, and move on
     // to the next line. For example:
+    var arrayString = inputString.split(" ");
+    var theLineL = 0;
+    var toString = "";
+    var wordNum = 0;
+    var toLine = "";
 
+    while (theLineL < 40) {
+      toLine += arrayString[wordNum] + " ";
+      theLineL = toLine.length;
+      toString += toLine;
+    }
 }
+
+
 
 function bubbleSort(arrayOfNumbers) {
     // Make this function implement the "Bubble Sort" algorithm for sorting an 
